@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
     public TextMeshProUGUI countTextP2; // Added for Player 2 score
     public TextMeshProUGUI winTextObject;
     public float speed = 10f;
+    private float currentSpeed;
     private int count;
     private int countP2;
     private Rigidbody rb;
@@ -16,6 +17,7 @@ public class Ball : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         SetCountText();
         winTextObject.gameObject.SetActive(false);
+        currentSpeed = speed;
         LaunchBall();
     }
 
@@ -24,7 +26,7 @@ public class Ball : MonoBehaviour
         float xDir = Random.value < 0.5f ? -1f : 1f;
         float yDir = Random.Range(-0.5f, 0.5f);
         Vector3 direction = new Vector3(xDir, yDir, 0).normalized;
-        rb.linearVelocity = direction * speed;
+        rb.linearVelocity = direction * currentSpeed;
     }
     void OnTriggerEnter(Collider other) 
     {
@@ -90,13 +92,14 @@ public class Ball : MonoBehaviour
         }
         // Reflect the velocity for classic Pong bounce
         Vector3 normal = collision.contacts[0].normal;
-        Vector3 newVel = Vector3.Reflect(rb.linearVelocity, normal).normalized * speed;
+        Vector3 newVel = Vector3.Reflect(rb.linearVelocity, normal).normalized * currentSpeed;
+        currentSpeed *= 1.1f; // Increase speed by 10% on each paddle hit
         // Prevent vertical-only bouncing: ensure X velocity is always above a minimum
         float minX = 0.5f;
         if (Mathf.Abs(newVel.x) < minX)
         {
             newVel.x = minX * Mathf.Sign(newVel.x == 0 ? Random.value - 0.5f : newVel.x);
-            newVel = newVel.normalized * speed;
+            newVel = newVel.normalized * currentSpeed;
         }
         rb.linearVelocity = newVel;
     }
@@ -104,6 +107,7 @@ public class Ball : MonoBehaviour
     void ResetBall()
     {
         rb.linearVelocity = Vector3.zero;
+        currentSpeed = speed; // Reset speed to initial value
         transform.position = new Vector3(0,30,24.75f);
         LaunchBall();
     }
