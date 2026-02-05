@@ -11,14 +11,14 @@ public class Player: MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        transform.position = new Vector3(-23.3500004f, 29.8669395f, 24.75f);
+        //transform.position = new Vector3(-23.3500004f, 29.8669395f, 24.75f);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-    if (Keyboard.current.aKey.isPressed)
+    if (Keyboard.current.aKey.isPressed && CompareTag("Player"))
     {
         // Vector3 force = new Vector3(0f, 0f, forceStrength);
         // Rigidbody rBody = GetComponent<Rigidbody>();
@@ -32,7 +32,7 @@ public class Player: MonoBehaviour
         // transform.position += new Vector3(0f, 0f, paddleSpeed) * Time.deltaTime;
     }
 
-        if (Keyboard.current.dKey.isPressed)
+        if (Keyboard.current.dKey.isPressed && CompareTag("Player"))
         {
             // Vector3 force = new Vector3(0f, 0f, -forceStrength);
             // Rigidbody rBody = GetComponent<Rigidbody>();
@@ -42,7 +42,27 @@ public class Player: MonoBehaviour
             newPosition.y = Mathf.Clamp(newPosition.y, 20f, maxY);
             transform.position = newPosition;
         }
-     
+        if (Keyboard.current.leftArrowKey.isPressed && CompareTag("player2"))
+    {
+        // Vector3 force = new Vector3(0f, 0f, forceStrength);
+        // Rigidbody rBody = GetComponent<Rigidbody>();
+        // rBody.AddForce(force, ForceMode.Force);
+
+        Vector3 newPosition = transform.position + new Vector3(0f, paddleSpeed, 0f) * Time.deltaTime;
+        newPosition.y = Mathf.Clamp(newPosition.y, 20f, maxY);
+        transform.position = newPosition;
+    }
+
+        if (Keyboard.current.rightArrowKey.isPressed && CompareTag("player2"))
+        {
+            // Vector3 force = new Vector3(0f, 0f, -forceStrength);
+            // Rigidbody rBody = GetComponent<Rigidbody>();
+            // rBody.AddForce(force, ForceMode.Force);
+
+            Vector3 newPosition = transform.position - new Vector3(0f, paddleSpeed, 0f) * Time.deltaTime;
+            newPosition.y = Mathf.Clamp(newPosition.y, 20f, maxY);
+            transform.position = newPosition;
+        }
         
     }
     void OnCollisionEnter(Collision collision)
