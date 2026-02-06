@@ -53,10 +53,10 @@ public class Ball : MonoBehaviour
 
     void SetCountText() 
     {
-        countText.text = "Player1:" + count.ToString();
+        countText.text = count.ToString();
         if (countTextP2 != null)
         {
-            countTextP2.text = "Player2:" + countP2.ToString();
+            countTextP2.text = countP2.ToString();
         }
         if (count >= 11 || countP2 >= 11)
         {
