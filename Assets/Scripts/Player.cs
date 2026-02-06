@@ -18,7 +18,7 @@ public class Player: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    if (Keyboard.current.aKey.isPressed && CompareTag("Player"))
+    if (Keyboard.current.wKey.isPressed && CompareTag("Player"))
     {
         // Vector3 force = new Vector3(0f, 0f, forceStrength);
         // Rigidbody rBody = GetComponent<Rigidbody>();
@@ -32,7 +32,7 @@ public class Player: MonoBehaviour
         // transform.position += new Vector3(0f, 0f, paddleSpeed) * Time.deltaTime;
     }
 
-        if (Keyboard.current.dKey.isPressed && CompareTag("Player"))
+        if (Keyboard.current.sKey.isPressed && CompareTag("Player"))
         {
             // Vector3 force = new Vector3(0f, 0f, -forceStrength);
             // Rigidbody rBody = GetComponent<Rigidbody>();
@@ -42,7 +42,7 @@ public class Player: MonoBehaviour
             newPosition.y = Mathf.Clamp(newPosition.y, 20f, maxY);
             transform.position = newPosition;
         }
-        if (Keyboard.current.leftArrowKey.isPressed && CompareTag("player2"))
+        if (Keyboard.current.upArrowKey.isPressed && CompareTag("player2"))
     {
         // Vector3 force = new Vector3(0f, 0f, forceStrength);
         // Rigidbody rBody = GetComponent<Rigidbody>();
@@ -53,7 +53,7 @@ public class Player: MonoBehaviour
         transform.position = newPosition;
     }
 
-        if (Keyboard.current.rightArrowKey.isPressed && CompareTag("player2"))
+        if (Keyboard.current.downArrowKey.isPressed && CompareTag("player2"))
         {
             // Vector3 force = new Vector3(0f, 0f, -forceStrength);
             // Rigidbody rBody = GetComponent<Rigidbody>();
@@ -67,7 +67,7 @@ public class Player: MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-         Debug.Log($"{this.name} collided with the {collision.gameObject.name}");
+         //Debug.Log($"{this.name} collided with the {collision.gameObject.name}");
         Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
         if (rb == null)
         {
