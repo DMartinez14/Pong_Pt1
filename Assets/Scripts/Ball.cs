@@ -65,7 +65,7 @@ public class Ball : MonoBehaviour
             {
                 winTextObject.gameObject.SetActive(true);
                 winTextObject.text = "Game Over, Player 1 Wins";
-                Debug.Log("Game Over, Right Paddle Wins");
+                Debug.Log("Game Over, Left Paddle Wins");
                 Debug.Log("0-0");
                 
             }
@@ -73,7 +73,7 @@ public class Ball : MonoBehaviour
             {
                 winTextObject.gameObject.SetActive(true);
                 winTextObject.text = "Game Over, Player 2 Wins";
-                Debug.Log("Game Over, Left Paddle Wins");
+                Debug.Log("Game Over, Right Paddle Wins");
                 Debug.Log("0-0");
             }
             Destroy(GameObject.FindGameObjectWithTag("ball"));
