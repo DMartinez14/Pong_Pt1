@@ -11,6 +11,8 @@ public class Ball : MonoBehaviour
     private int count;
     private int countP2;
     private Rigidbody rb;
+    private CameraShake camShake;
+    public ParticleSystem hitParticles;
 
     void Start()
     {
@@ -18,6 +20,7 @@ public class Ball : MonoBehaviour
         SetCountText();
         winTextObject.gameObject.SetActive(false);
         currentSpeed = speed;
+        camShake = Camera.main.GetComponent<CameraShake>();
         LaunchBall();
     }
 
@@ -89,6 +92,11 @@ public class Ball : MonoBehaviour
         {
             ResetBall();
             return;
+        }
+        // Camera shake on wall hit
+        if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("player2"))
+        {
+            if (camShake != null) camShake.Shake();
         }
         // Reflect the velocity for classic Pong bounce
         Vector3 normal = collision.contacts[0].normal;

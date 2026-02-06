@@ -7,6 +7,10 @@ TagManager:
   - Trampoline
   - Points
   - Ball
+  - P1Point
+  - P2Point
+  - player2
+  - Wall
   layers:
   - Default
   - TransparentFX
